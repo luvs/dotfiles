@@ -1,0 +1,12 @@
+tags*
+.netrwhist
+pythonpath.vim
+nodepath.vim
+_config/nvim/autoload/plugged/*
+_config/nvim/vimspector-config/gadgets/*
+paths.vim
+session
+wiki/
+pack/
+utils/java/*
+macos/Brewfile.lock.json

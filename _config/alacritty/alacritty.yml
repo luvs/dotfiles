@@ -1,0 +1,109 @@
+env:
+  TERM: alacritty
+
+window:
+  dynamic_padding: false
+  startup_mode: Windowed
+  decorations: "buttonless"
+
+  dimensions:
+    columns: 165
+    lines: 50
+
+  position:
+    x: 79
+    y: 47
+
+  padding:
+    x: 28
+    y: 31
+
+  title: ""
+
+font:
+  normal:
+      #family: "SauceCodePro Nerd Font"
+    family: "FiraCode Nerd Font"
+    #    style: "Retina"
+
+  bold:
+      #    family: "Fira Code"
+    family: "Source Code Pro"
+    style: "Bold Retina"
+
+  italic:
+      #    family: "Fira Code"
+    family: "Source Code Pro"
+    style: "Italic Retina"
+
+  bold_italic:
+      #    family: "Fira Code"
+    family: "Source Code Pro"
+    style: "Bold Italic Retina"
+
+  size: 14.0
+  use_thin_strokes: true
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+
+  save_to_clipboard: true
+
+live_config_reload: true
+
+# https://arslan.io/2018/02/05/gpu-accelerated-terminal-alacritty/#make-alacritty-feel-like-iterm2
+key_bindings:
+  # Use command + [ - to go to previous tmux window
+  - { key: LBracket, mods: Command, chars: "\x5c\x70" }
+  # Use command + ] - to go to previous tmux window
+  - { key: RBracket, mods: Command, chars: "\x5c\x6e" }
+  # ctrl-^ doesn't work in some terminals like alacritty
+  - { key: Key6, mods: Control, chars: "\x1e" }
+
+# Base16 Eighties 256 - alacritty color config
+# Chris Kempson (http://chriskempson.com)
+colors:
+  # Default colors
+  primary:
+    background: '0x2d2d2d'
+    foreground: '0xd3d0c8'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0x2d2d2d'
+    cursor: '0xd3d0c8'
+
+  # Normal colors
+  normal:
+    black:   '0x2d2d2d'
+    red:     '0xf2777a'
+    green:   '0x99cc99'
+    yellow:  '0xffcc66'
+    blue:    '0x6699cc'
+    magenta: '0xcc99cc'
+    cyan:    '0x66cccc'
+    white:   '0xd3d0c8'
+
+  # Bright colors
+  bright:
+    black:   '0x747369'
+    red:     '0xf2777a'
+    green:   '0x99cc99'
+    yellow:  '0xffcc66'
+    blue:    '0x6699cc'
+    magenta: '0xcc99cc'
+    cyan:    '0x66cccc'
+    white:   '0xf2f0ec'
+
+  indexed_colors:
+    - { index: 16, color: '0xf99157' }
+    - { index: 17, color: '0xd27b53' }
+    - { index: 18, color: '0x393939' }
+    - { index: 19, color: '0x515151' }
+    - { index: 20, color: '0xa09f93' }
+    - { index: 21, color: '0xe8e6df' }
+
+shell:
+  program: /usr/local/bin/zsh
+  args:
+    - --login

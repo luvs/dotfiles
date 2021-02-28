@@ -1,0 +1,150 @@
+# --- Configure ZSH -----------------------------------------------------------
+setopt AUTO_CD                  # changes directory when path entered without cd
+setopt NO_CASE_GLOB             # case insensitive globbing
+setopt SHARE_HISTORY            # share history between sessions
+setopt HIST_EXPIRE_DUPS_FIRST   # expire duplicates first
+setopt HIST_IGNORE_DUPS         # ignore duplicates
+setopt HIST_FIND_NO_DUPS        # ignore duplicates when searching
+setopt HIST_REDUCE_BLANKS       # reduce blank lines
+setopt HIST_IGNORE_SPACE        # ignore lines starting with a space
+setopt HIST_VERIFY              # verify command before run when use !!
+setopt CORRECT                  # Correct commands
+setopt CORRECT_ALL              # Correct all arguments
+
+# --- Enviroment variables ----------------------------------------------------
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export PATH=~/.bin:$PATH
+
+# --- History file ------------------------------------------------------------
+HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+HISTSIZE=999999
+SAVEHIST=999999
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}‚ñì‚ñí‚ñë %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})‚Ä¶%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}‚ñì‚ñí‚ñë %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}‚ñì‚ñí‚ñë The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
+
+# --- Base16 Shell ------------------------------------------------------------
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
+# --- powerlevel10k --------------------------------------------------------------------
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# --- tmux --------------------------------------------------------------------
+zinit wait svn lucid for \
+    atinit"
+        ZSH_TMUX_FIXTERM=true
+        ZSH_TMUX_AUTOSTART=false
+        ZSH_TMUX_AUTOCONNECT=true
+    " \
+    OMZP::tmux
+
+
+# --- zsh-completions ---------------------------------------------------------
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+fi
+
+# --- Git ---------------------------------------------------------------------
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+RPROMPT=\$vcs_info_msg_0_
+zstyle ':vcs_info:git:*' formats '%F{246}[%b] %r%f'
+zstyle ':vcs_info:*' enable git
+
+# --- FZF ---------------------------------------------------------------------
+if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
+fi
+[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+
+# --- Tools -------------------------------------------------------------------
+eval "$(zoxide init zsh)"
+
+# --- Plugins (zinit) ---------------------------------------------------------
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zinit-zsh/z-a-rust \
+    zinit-zsh/z-a-as-monitor \
+    zinit-zsh/z-a-patch-dl \
+    zinit-zsh/z-a-bin-gem-node
+
+zinit wait lucid for \
+    OMZL::git.zsh \
+    OMZP::git \
+    zsh-users/zsh-history-substring-search \
+    wfxr/forgit \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
+
+# --- Keybindings -------------------------------------------------------------
+bindkey $'^[[A' history-substring-search-up    # search in history by up arrow
+bindkey $'^[[B' history-substring-search-down  # search in history by down arrow
+
+
+# --- Aliases -----------------------------------------------------------------
+alias ls='gls -G --color=auto --group-directories-first'
+alias lsa='gls -Ga --color=auto --group-directories-first'
+alias ll='gls -Gl --color=auto --group-directories-first'
+alias lla='gls -Gla --color=auto --group-directories-first'
+
+alias cp='nocorrect cp'
+alias mv='nocorrect mv'
+alias sudo='nocorrect sudo'
+alias mkdir='nocorrect mkdir'
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+alias vi='nvim'
+alias vim='nvim'
+
+alias gs="git status"
+alias gac="git add . && git commit -m"
+
+# Node
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Python
+export PATH="/Users/luvs/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+(( ! ${+functions[p10k]} )) || p10k finalize

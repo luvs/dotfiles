@@ -1,0 +1,19 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+      force: true
+
+- clean: ["~"]
+
+- link:
+    ~/.zshrc: _zshrc
+    ~/.p10k.zsh: _p10k.zsh
+    ~/.tmux.conf: _tmux.conf
+    ~/.gitconfig: _gitconfig
+    ~/.tmux/tmux.remote.conf: _tmux.remote.conf
+    ~/.bin/tm: _bin/tm
+    ~/.config/:
+      glob: true
+      path: _config/*
+      relink: true
