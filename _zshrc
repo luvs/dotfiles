@@ -137,6 +137,8 @@ alias vim='nvim'
 alias gs="git status"
 alias gac="git add . && git commit -m"
 
+alias make="gmake"
+
 # Node
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -148,3 +150,6 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 (( ! ${+functions[p10k]} )) || p10k finalize
+
+# The next line updates PATH for Netlify's Git Credential Helper.
+if [ -f '/Users/luvs/Library/Preferences/netlify/helper/path.zsh.inc' ]; then source '/Users/luvs/Library/Preferences/netlify/helper/path.zsh.inc'; fi

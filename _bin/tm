@@ -1,4 +1,4 @@
-tmux new-session -s wsp -d -c "~/Workspace"
-tmux new-session -s fup -d -c "~/Workspace/fundraiseup"
-tmux new-session -s spk -d -c "~/Workspace/spike"
+tmux new-session -s wsp -d -c "/Users/luvs/Workspace"
+tmux new-session -s fup -d -c "/Users/luvs/Workspace/fundraiseup"
+tmux new-session -s spk -d -c "/Users/luvs/Workspace/spike"
 tmux -2 attach-session -t wsp

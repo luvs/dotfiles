@@ -118,5 +118,7 @@
 
   "bookmark.sign": "",
 
-  "coc.source.emoji.filetypes": ["markdown"]
+  "coc.source.emoji.filetypes": ["markdown"],
+  "yaml.schemas": {},
+  "yaml.schemaStore.enable": false
 }

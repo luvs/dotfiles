@@ -33,6 +33,6 @@ source $HOME/.config/nvim/plugins-config/asynctasks.vim
 source $HOME/.config/nvim/plugins-config/vim-windowswap.vim
 source $HOME/.config/nvim/plugins-config/markdown-preview.vim
 "source $HOME/.config/nvim/plugins-config/rnvimr.vim
-luafile $HOME/.config/nvim/lua/treesitter.lua
+"luafile $HOME/.config/nvim/lua/treesitter.lua
 luafile $HOME/.config/nvim/lua/galaxyline-config.lua
 luafile $HOME/.config/nvim/lua/colorizer-config.lua

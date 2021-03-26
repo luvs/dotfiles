@@ -57,6 +57,7 @@ brew "zsh"
 #### Fonts
 cask "font-fira-code"
 cask "font-fira-mono-for-powerline"
+cask "font-fira-mono-nerd-font"
 cask "font-fira-sans"
 cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"

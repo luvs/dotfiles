@@ -93,6 +93,8 @@ Plug 'mbbill/undotree'
 Plug 'brooth/far.vim'
 " Fast tags rename
 Plug 'AndrewRadev/tagalong.vim'
+" Easy align
+Plug 'junegunn/vim-easy-align'
 
 "Plug 'kevinhwang91/rnvimr'
 call plug#end()
