@@ -6,7 +6,8 @@ end
 
 indent.setup {
   indentLine_enabled = 1,
-  char = "",
+  char = "┊",
+  --char = "┆",
   filetype_exclude = {
       "help",
       "terminal",
