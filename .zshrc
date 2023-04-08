@@ -20,6 +20,8 @@ export LC_CTYPE=en_US.UTF-8
 export PATH=~/.bin:$PATH
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
+export VAULT_ADDR='https://vault.fundraiseup.com'
+
 # --- Aliases -----------------------------------------------------------------
 alias ls='gls -G --color=auto --group-directories-first'
 alias lsa='gls -Ga --color=auto --group-directories-first'
@@ -45,14 +47,16 @@ alias gac="git add . && git commit -m"
 alias make="gmake"
 alias cat="bat --theme=Nord"
 
+alias cdd='dirs -v && read index && let "index=$index+0" && cd ~"$index" && let "index=$index+1" && popd -q +"$index"'
+
 ## --- Theme -------------------------------------------------------------------
 if [ -f ~/.config/base16-nord.sh ]; then
   . ~/.config/base16-nord.sh
 fi
 
 ## --- Keybindings -------------------------------------------------------------
-##bindkey $'^[[A' history-substring-search-up    # search in history by up arrow
-##bindkey $'^[[B' history-substring-search-down  # search in history by down arrow
+bindkey $'^[[A' history-substring-search-up    # search in history by up arrow
+bindkey $'^[[B' history-substring-search-down  # search in history by down arrow
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -76,4 +80,5 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+eval "$(lua /Users/luvs/.local/share/sheldon/repos/github.com/skywind3000/z.lua/z.lua --init zsh)"
 eval "$(sheldon source)"

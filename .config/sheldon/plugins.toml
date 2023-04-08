@@ -12,6 +12,11 @@
 
 shell = "zsh"
 
+[templates]
+defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
+
+[plugins]
+
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
@@ -22,5 +27,25 @@ github = "romkatv/powerlevel10k"
 github = "zsh-users/zsh-syntax-highlighting"
 apply = ["defer"]
 
-[templates]
-defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+use = ["{{ name }}.zsh"]
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+apply = ["source"]
+
+[plugins.zsh-history-substring-search]
+github = "zsh-users/zsh-history-substring-search"
+apply = ["source"]
+
+[plugins."z.lua"]
+github = "skywind3000/z.lua"
+apply = ["source"]
+
+[plugins.fzf-tab]
+github = "Aloxaf/fzf-tab"
+apply = ["source"]
+
+[plugins.compinit]
+inline = 'autoload -Uz compinit && zsh-defer compinit'
