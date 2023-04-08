@@ -1,0 +1,5 @@
+tmux new-session -s wsp -d -c "/Users/luvs/Workspace"
+tmux new-session -s fru -d -c "/Users/luvs/Workspace/fru"
+tmux new-session -s mnf -d -c "/Users/luvs/Workspace/mnf"
+tmux new-session -s cue -d -c "/Users/luvs/Workspace/cue"
+tmux -2 attach-session -t wsp
