@@ -100,6 +100,9 @@ return require('packer').startup({function(use)
     'TimUntersberger/neogit', 
     requires = 'nvim-lua/plenary.nvim' 
   }
+  -- Go
+  use 'ray-x/go.nvim'
+  use 'ray-x/guihua.lua'
 
   -----------------------------------------------------------------------------
   -- Autocomplete and LSP

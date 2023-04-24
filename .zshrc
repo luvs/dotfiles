@@ -17,10 +17,14 @@ SAVEHIST=999999
 # --- Enviroment variables ----------------------------------------------------
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
-export PATH=~/.bin:$PATH
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 export VAULT_ADDR='https://vault.fundraiseup.com'
+
+export GOPATH=$HOME/Workspace/go
+export GOROOT="$(brew --prefix golang)/libexec"
+
+export PATH=$HOME/.bin:$PATH:${GOPATH}/bin:${GOROOT}/bin
 
 # --- Aliases -----------------------------------------------------------------
 alias ls='gls -G --color=auto --group-directories-first'
