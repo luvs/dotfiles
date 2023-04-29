@@ -2,11 +2,12 @@
   rebase = false
 [push]
   autoSetupRemote = true
-[gpg]
-  format = ssh
-[commit]
-  gpgsign = true
-[gpg "ssh"]
-  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[init]
+  defaultBranch = master
+[filter "lfs"]
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
 [include]
   path = .gitconfig.local
