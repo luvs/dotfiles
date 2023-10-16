@@ -1,12 +1,4 @@
 [user]
   name = Evgeny Luvsandugar
   email = evgeny.luvsandugar@fundraiseup.com
-[user]
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID4fG8GY8uzTjJgZlUdiXemrZqRMeAQNOlZXrjNRXpse
-[gpg]
-  format = ssh
-[gpg "ssh"]
-  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-[commit]
-  gpgsign = true
 

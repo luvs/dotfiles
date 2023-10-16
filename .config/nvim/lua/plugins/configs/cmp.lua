@@ -17,6 +17,22 @@ end
 
 local luasnip = require('luasnip')
 
+-- local has_words_before = function()
+--   if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+--   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+--   return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+-- end
+
+-- -- lspkind.lua
+-- local lspkind = require("lspkind")
+-- lspkind.init({
+--   symbol_map = {
+--     Copilot = "",
+--   },
+-- })
+--
+-- vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
+
 local cmp = require('cmp')
 cmp.setup({
   snippet = {
@@ -39,6 +55,13 @@ cmp.setup({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
+    -- ["<Tab>"] = vim.schedule_wrap(function(fallback)
+    --   if cmp.visible() and has_words_before() then
+    --     cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+    --   else
+    --     fallback()
+    --   end
+    -- end),
     ['<Tab>'] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -59,22 +82,23 @@ cmp.setup({
     end,
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'path' },
-  },{
-    { name = 'buffer',
-    option = {
-      get_bufnrs = function()
-        local bufs = {}
-        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-          bufs[buf] = true
+      { name = "copilot",  group_index = 2 },
+      { name = 'nvim_lsp', group_index = 2 },
+      { name = 'luasnip',  group_index = 2 },
+      { name = 'path',     group_index = 2 },
+    },{
+    { name = 'buffer', group_index = 2,
+      option = {
+        get_bufnrs = function()
+          local bufs = {}
+          for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+            bufs[buf] = true
+          end
+          return vim.tbl_keys(bufs)
         end
-        return vim.tbl_keys(bufs)
-      end
+      },
     },
-  },
-})
+  })
 })
 
 -- Use buffer source for `/`

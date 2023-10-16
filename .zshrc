@@ -52,6 +52,8 @@ alias make="gmake"
 alias cat="bat --theme=Nord"
 
 alias cdd='dirs -v && read index && let "index=$index+0" && cd ~"$index" && let "index=$index+1" && popd -q +"$index"'
+alias srv='tsh ssh ubuntu@$(tsh ls -f names | fzf)'
+alias addkeys='grep -slR "PRIVATE" ~/.ssh | xargs ssh-add --apple-use-keychain'
 
 ## --- Theme -------------------------------------------------------------------
 if [ -f ~/.config/base16-nord.sh ]; then
@@ -83,6 +85,12 @@ source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(lua /Users/luvs/.local/share/sheldon/repos/github.com/skywind3000/z.lua/z.lua --init zsh)"
 eval "$(sheldon source)"
+

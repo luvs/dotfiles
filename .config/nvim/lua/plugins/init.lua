@@ -104,6 +104,18 @@ return require('packer').startup({function(use)
   use 'ray-x/go.nvim'
   use 'ray-x/guihua.lua'
 
+  -- use {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   config = function() require('plugins/configs/copilot') end
+  -- }
+  --
+  -- use {
+  --   "zbirenbaum/copilot-cmp",
+  --   after = { "copilot.lua" },
+  --   config = function() require('plugins/configs/copilot-cmp') end
+  -- }
   -----------------------------------------------------------------------------
   -- Autocomplete and LSP
   -----------------------------------------------------------------------------
@@ -176,6 +188,7 @@ return require('packer').startup({function(use)
   -- Others
   -----------------------------------------------------------------------------
   use 'nathom/filetype.nvim'
+--  use 'onsails/lspkind.nvim'
   use {'nvim-telescope/telescope-ui-select.nvim' }
   use {
     'Shatur/neovim-session-manager',

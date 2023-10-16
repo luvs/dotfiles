@@ -85,6 +85,7 @@ if present then
       f = { '<cmd>Telescope buffers<CR>', 'Find' },
       b = { '<cmd>BufferPick<CR>', 'Pick' },
       d = { '<cmd>BufferClose<CR>', 'Close' },
+      c = { '<cmd>BufferCloseAllButCurrent<CR>', 'Close All Except Current' },
     },
     f = {
       name = "files",
