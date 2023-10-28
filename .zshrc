@@ -36,6 +36,7 @@ alias cp='nocorrect cp'
 alias mv='nocorrect mv'
 alias sudo='nocorrect sudo'
 alias mkdir='nocorrect mkdir'
+alias rmrf="rm -rf"
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -78,8 +79,7 @@ fi
 if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
   export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
 fi
-[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
-source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # --- PyEnv ---------------------------------------------------------------------
 export PYENV_ROOT="$HOME/.pyenv"
@@ -94,3 +94,4 @@ export NVM_DIR="$HOME/.nvm"
 eval "$(lua /Users/luvs/.local/share/sheldon/repos/github.com/skywind3000/z.lua/z.lua --init zsh)"
 eval "$(sheldon source)"
 
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"

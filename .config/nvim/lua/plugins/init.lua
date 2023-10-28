@@ -81,11 +81,11 @@ return require('packer').startup({function(use)
   -----------------------------------------------------------------------------
   -- Controls and navigation
   -----------------------------------------------------------------------------
-  use {
-    'lukas-reineke/indent-blankline.nvim',
-    event = "BufRead",
-    config = function() require('plugins/configs/indent-blankline') end
-  }
+  -- use {
+  --   'lukas-reineke/indent-blankline.nvim',
+  --   event = "BufRead",
+  --   config = function() require('plugins/configs/indent-blankline') end
+  -- }
 
   use {
     "max397574/better-escape.nvim",
