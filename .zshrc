@@ -9,6 +9,8 @@ setopt HIST_REDUCE_BLANKS       # reduce blank lines
 setopt HIST_IGNORE_SPACE        # ignore lines starting with a space
 setopt HIST_VERIFY              # verify command before run when use !!
 
+fpath+=~/.zfunc
+
 # --- History file ------------------------------------------------------------
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 HISTSIZE=999999
@@ -18,13 +20,8 @@ SAVEHIST=999999
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
 export VAULT_ADDR='https://vault.fundraiseup.com'
-
-export GOPATH=$HOME/Workspace/go
-export GOROOT="$(brew --prefix golang)/libexec"
-
-export PATH=$HOME/.bin:$PATH:${GOPATH}/bin:${GOROOT}/bin
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$HOME/.bin:$PATH"
 
 # --- Aliases -----------------------------------------------------------------
 alias ls='gls -G --color=auto --group-directories-first'
@@ -37,6 +34,8 @@ alias mv='nocorrect mv'
 alias sudo='nocorrect sudo'
 alias mkdir='nocorrect mkdir'
 alias rmrf="rm -rf"
+alias awk="gawk"
+alias sed="gsed"
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -47,13 +46,13 @@ alias vi='nvim'
 alias vim='nvim'
 
 alias gs="git status"
+alias gco="git checkout"
 alias gac="git add . && git commit -m"
 
 alias make="gmake"
 alias cat="bat --theme=Nord"
 
 alias cdd='dirs -v && read index && let "index=$index+0" && cd ~"$index" && let "index=$index+1" && popd -q +"$index"'
-alias srv='tsh ssh ubuntu@$(tsh ls -f names | fzf)'
 alias addkeys='grep -slR "PRIVATE" ~/.ssh | xargs ssh-add --apple-use-keychain'
 
 ## --- Theme -------------------------------------------------------------------
@@ -87,11 +86,10 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# --- FNM -----------------------------------------------------------------------
+export PATH="/Users/luvs/Library/Application Support/fnm:$PATH"
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
 
+# --- Sheldon -------------------------------------------------------------------
 eval "$(lua /Users/luvs/.local/share/sheldon/repos/github.com/skywind3000/z.lua/z.lua --init zsh)"
 eval "$(sheldon source)"
-
-export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
