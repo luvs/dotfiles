@@ -56,7 +56,9 @@ alias cat="bat --theme=Nord"
 
 alias cdd='dirs -v && read index && let "index=$index+0" && cd ~"$index" && let "index=$index+1" && popd -q +"$index"'
 alias addkeys='grep -slR "PRIVATE" ~/.ssh | xargs ssh-add --apple-use-keychain'
-alias dfpush="yadm add -u && yadm commit -m 'Update' && yadm push"
+
+alias dfp="yadm add -u && yadm commit -m 'Update' && yadm push"
+alias dfs="yadm status -s"
 
 ## --- Theme -------------------------------------------------------------------
 if [ -f ~/.config/base16-nord.sh ]; then
