@@ -14,14 +14,24 @@ shell = "zsh"
 
 [templates]
 defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
+#[templates]
+#defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
+
 
 [plugins]
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
+[plugins.compinit]
+inline = 'autoload -Uz compinit && compinit'
+
 [plugins.powerlevel10k]
 github = "romkatv/powerlevel10k"
+
+[plugins.fzf-tab]
+github = "Aloxaf/fzf-tab"
+apply = ["source"]
 
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"
@@ -30,22 +40,12 @@ apply = ["defer"]
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
+apply = ["defer"]
 
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
-apply = ["source"]
+apply = ["defer", "source"]
 
 [plugins.zsh-history-substring-search]
 github = "zsh-users/zsh-history-substring-search"
-apply = ["source"]
-
-[plugins."z.lua"]
-github = "skywind3000/z.lua"
-apply = ["source"]
-
-[plugins.fzf-tab]
-github = "Aloxaf/fzf-tab"
-apply = ["source"]
-
-[plugins.compinit]
-inline = 'autoload -Uz compinit && zsh-defer compinit'
+apply = ["defer", "source"]

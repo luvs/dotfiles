@@ -36,11 +36,13 @@ alias mkdir='nocorrect mkdir'
 alias rmrf="rm -rf"
 alias awk="gawk"
 alias sed="gsed"
+alias ya="yazi"
 
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
+alias cd="z"
+alias ..="z .."
+alias ...="z ../.."
+alias ....="z ../../.."
+alias .....="z ../../../.."
 
 alias vi='nvim'
 alias vim='nvim'
@@ -54,6 +56,7 @@ alias cat="bat --theme=Nord"
 
 alias cdd='dirs -v && read index && let "index=$index+0" && cd ~"$index" && let "index=$index+1" && popd -q +"$index"'
 alias addkeys='grep -slR "PRIVATE" ~/.ssh | xargs ssh-add --apple-use-keychain'
+alias dfpush="yadm add -u && yadm commit -m 'Update' && yadm push"
 
 ## --- Theme -------------------------------------------------------------------
 if [ -f ~/.config/base16-nord.sh ]; then
@@ -90,6 +93,9 @@ eval "$(pyenv virtualenv-init -)"
 export PATH="/Users/luvs/Library/Application Support/fnm:$PATH"
 eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
 
+# --- Z -----------------------------------------------------------------------
+#eval "$(lua /Users/luvs/.local/share/sheldon/repos/github.com/skywind3000/z.lua/z.lua --init zsh enhanced once fzf)"
 # --- Sheldon -------------------------------------------------------------------
-eval "$(lua /Users/luvs/.local/share/sheldon/repos/github.com/skywind3000/z.lua/z.lua --init zsh)"
 eval "$(sheldon source)"
+
+eval "$(zoxide init zsh)"
