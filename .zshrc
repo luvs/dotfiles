@@ -48,7 +48,10 @@ alias vi='nvim'
 alias vim='nvim'
 
 alias gs="git status"
+alias gpl="git pull"
+alias gph="git push"
 alias gco="git checkout"
+alias gcb="git checkout -b"
 alias gac="git add . && git commit -m"
 
 alias make="gmake"
@@ -59,6 +62,9 @@ alias addkeys='grep -slR "PRIVATE" ~/.ssh | xargs ssh-add --apple-use-keychain'
 
 alias dfp="yadm add -u && yadm commit -m 'Update' && yadm push"
 alias dfs="yadm status -s"
+
+alias fruvault="vault login -method=oidc"
+alias mnfaws="aws sso login --profile snp"
 
 ## --- Theme -------------------------------------------------------------------
 if [ -f ~/.config/base16-nord.sh ]; then
