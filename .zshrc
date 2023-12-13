@@ -60,7 +60,7 @@ alias cat="bat --theme=Nord"
 alias cdd='dirs -v && read index && let "index=$index+0" && cd ~"$index" && let "index=$index+1" && popd -q +"$index"'
 alias addkeys='grep -slR "PRIVATE" ~/.ssh | xargs ssh-add --apple-use-keychain'
 
-alias dfp="yadm add -u && yadm commit -m 'Update' && yadm push"
+alias dfu="yadm add -u && yadm commit -m 'Update' && yadm push"
 alias dfs="yadm status -s"
 
 alias fruvault="vault login -method=oidc"
