@@ -1,20 +1,24 @@
 # --- Configure ZSH -----------------------------------------------------------
 setopt AUTO_CD                  # changes directory when path entered without cd
 setopt NO_CASE_GLOB             # case insensitive globbing
-setopt SHARE_HISTORY            # share history between sessions
-setopt HIST_EXPIRE_DUPS_FIRST   # expire duplicates first
-setopt HIST_IGNORE_DUPS         # ignore duplicates
-setopt HIST_FIND_NO_DUPS        # ignore duplicates when searching
-setopt HIST_REDUCE_BLANKS       # reduce blank lines
-setopt HIST_IGNORE_SPACE        # ignore lines starting with a space
-setopt HIST_VERIFY              # verify command before run when use !!
 
 fpath+=~/.zfunc
 
 # --- History file ------------------------------------------------------------
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
-HISTSIZE=999999
-SAVEHIST=999999
+HISTSIZE=10000000
+SAVEHIST=10000000
+setopt BANG_HIST
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY            # share history between sessions
+setopt HIST_EXPIRE_DUPS_FIRST   # expire duplicates first
+setopt HIST_IGNORE_DUPS         # ignore duplicates
+setopt HIST_FIND_NO_DUPS        # ignore duplicates when searching
+setopt HIST_SAVE_NO_DUPS        # Don't write duplicate entries in the history file
+setopt HIST_REDUCE_BLANKS       # reduce blank lines
+setopt HIST_IGNORE_SPACE        # ignore lines starting with a space
+setopt HIST_VERIFY              # verify command before run when use !!
 
 # --- Enviroment variables ----------------------------------------------------
 export LANG=en_US.UTF-8
@@ -53,6 +57,8 @@ alias gph="git push"
 alias gco="git checkout"
 alias gcb="git checkout -b"
 alias gac="git add . && git commit -m"
+alias gc="git switch"
+alias gn="git switch -c"
 
 alias make="gmake"
 alias cat="bat --theme=Nord"
@@ -60,8 +66,8 @@ alias cat="bat --theme=Nord"
 alias cdd='dirs -v && read index && let "index=$index+0" && cd ~"$index" && let "index=$index+1" && popd -q +"$index"'
 alias addkeys='grep -slR "PRIVATE" ~/.ssh | xargs ssh-add --apple-use-keychain'
 
-alias dfu="yadm add -u && yadm commit -m 'Update' && yadm push"
-alias dfs="yadm status -s"
+alias dotupdate="yadm add -u && yadm commit -m 'Update' && yadm push"
+alias dotstatus="yadm status -s"
 
 alias fruvault="vault login -method=oidc"
 alias mnfaws="aws sso login --profile snp"
