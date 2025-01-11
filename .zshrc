@@ -26,6 +26,7 @@ export LC_CTYPE=en_US.UTF-8
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export VAULT_ADDR='https://vault.fundraiseup.com'
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$HOME/.bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # --- Aliases -----------------------------------------------------------------
 alias ls='gls -G --color=auto --group-directories-first'
@@ -57,8 +58,7 @@ alias gph="git push"
 alias gco="git checkout"
 alias gcb="git checkout -b"
 alias gac="git add . && git commit -m"
-alias gc="git switch"
-alias gn="git switch -c"
+alias gz="lazygit"
 
 alias make="gmake"
 alias cat="bat --theme=Nord"
@@ -72,12 +72,14 @@ alias dotstatus="yadm status -s"
 alias fruvault="vault login -method=oidc"
 alias mnfaws="aws sso login --profile snp"
 
-## --- Theme -------------------------------------------------------------------
-if [ -f ~/.config/base16-nord.sh ]; then
-  . ~/.config/base16-nord.sh
+# --- Theme -------------------------------------------------------------------
+if [ "${TERM%%[-.]*}" != "xterm" ]; then # this is for terminal in neovim
+  if [ -f ~/.config/base16-nord.sh ]; then
+    . ~/.config/base16-nord.sh
+  fi
 fi
 
-## --- Keybindings -------------------------------------------------------------
+# --- Keybindings -------------------------------------------------------------
 bindkey $'^[[A' history-substring-search-up    # search in history by up arrow
 bindkey $'^[[B' history-substring-search-down  # search in history by down arrow
 
@@ -106,7 +108,20 @@ eval "$(pyenv virtualenv-init -)"
 # --- FNM -----------------------------------------------------------------------
 export PATH="/Users/luvs/Library/Application Support/fnm:$PATH"
 eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
+#
+# pnpm
+export PNPM_HOME="/Users/luvs/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 
 # --- Sheldon -------------------------------------------------------------------
 eval "$(sheldon source)"
 eval "$(zoxide init zsh)"
+
+. "$HOME/.cargo/env"
+
+# Added by Windsurf
+export PATH="/Users/luvs/.codeium/windsurf/bin:$PATH"

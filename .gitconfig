@@ -11,3 +11,8 @@
   clean = git-lfs clean -- %f
 [include]
   path = .gitconfig.local
+[alias]
+  co = checkout
+  br = branch
+  ci = commit
+  sw = switch
