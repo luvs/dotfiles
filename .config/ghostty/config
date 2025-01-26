@@ -17,24 +17,25 @@ window-padding-y = 20
 window-padding-balance = true
 window-save-state = always
 
+font-size = 14
 font-family = JetBrainsMono Nerd Font Regular
 font-family-bold = JetBrainsMono Nerd Font Bold
 font-family-italic = JetBrainsMono Nerd Font Italic
 font-family-bold-italic = JetBrainsMono Nerd Font Bold Italic
 
-keybind = ctrl+a>c=new_tab
-keybind = ctrl+a>d=close_surface
-keybind = ctrl+a>r=reload_config
+#keybind = ctrl+a>c=new_tab
+#keybind = ctrl+a>d=close_surface
+#keybind = ctrl+a>r=reload_config
 
-keybind = ctrl+a>z=toggle_split_zoom
-keybind = ctrl+a>/=new_split:right
-keybind = ctrl+a>-=new_split:down
-keybind = ctrl+a>e=equalize_splits
+#keybind = ctrl+a>z=toggle_split_zoom
+#keybind = ctrl+a>/=new_split:right
+#keybind = ctrl+a>-=new_split:down
+#keybind = ctrl+a>e=equalize_splits
 
-keybind = super+alt+j=goto_split:left
-keybind = super+alt+k=goto_split:bottom
-keybind = super+alt+i=goto_split:top
-keybind = super+alt+l=goto_split:right
+#keybind = ctrl+alt+j=goto_split:left
+#keybind = ctrl+alt+k=goto_split:bottom
+#keybind = ctrl+alt+i=goto_split:top
+#keybind = ctrl+alt+l=goto_split:right
 
-keybind = shift+left=previous_tab
-keybind = shift+right=next_tab
+#keybind = shift+left=previous_tab
+#keybind = shift+right=next_tab
